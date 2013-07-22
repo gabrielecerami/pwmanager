@@ -1,0 +1,43 @@
+{% extends "base_html5.html" %}
+
+{% block title %} Password Manager {% endblock title %}
+
+{% block head %} 
+
+{% endblock head %}
+
+{% block content %}
+		<div>
+			<header>
+				<h1 id="dbname"> Client Passwords </h1>
+			</header>
+			<div>
+				<hr>
+				<table border="1">
+					<tr >
+						<th>group</th>
+						<th>title</th>
+						<th>username</th>
+						<th>url</th>
+						<th>password</th>
+						<th>note</th>
+						<th>tag</th>
+					</tr>
+					{% for account in account_list %}
+					<tr>
+						<td>{{account.group}}</td>
+						<td>{{account.title}}</td>
+						<td>{{account.username}}</td>
+						<td>{{account.url}}</td>
+						<td>{{account.password}}</td>
+						<td>{{account.note}}</td>
+						<td>{{account.tag}}</td>
+					</tr>
+					{% endfor %}
+				{{request}}
+				</table>
+				<hr>
+			</div>
+			</div>
+{%endblock content%}
+			

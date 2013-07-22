@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Password Manager</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Gabriele Cerami" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div>
+			<header>
+				<h1 id="dbname"> General Passwords </h1>
+			</header>
+			<div>
+				<ul class="main_choices">
+					<li class="main_choices"><a class="main_choices" href="#home">Account List</a></li>
+					<li class="main_choices"><a class="main_choices" href="#news">Settings</a></li>
+				</ul>
+			</div>
+			<div class="account_list">
+				<hr>
+				<table class="account_list">
+					<tr >
+						<th>group</th>
+						<th>title</th>
+						<th>username</th>
+						<th>url</th>
+						<th>password</th>
+						<th>note</th>
+						<th>creation_time</th>
+						<th>access_time</th>
+						<th>modify_time</th>
+						<th>expiry_time</th>
+						<th>tag</th>
+					</tr>
+				</table>
+				<hr>
+			</div>
+			<div class="low">
+
+				<div class="left">
+				
+					<input type="search" name="cerca" value="cerca nel database">
+				</div>
+				<div class="right">
+					<button >Export list</button>
+				</div>
+			</div>
+
+			<footer>
+				<p>
+					&copy; Copyright 2012 Gabriele Cerami
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>

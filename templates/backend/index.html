@@ -1,0 +1,252 @@
+{% extends "base_html5.html" %}
+
+{% block title %} Password Distribution Manager {% endblock title %}
+
+{% block head %} 
+<script type="text/javascript"  src="/static/js/head.js"></script> 
+<script type="text/javascript"  src="/static/js/jquery-1.7.1.min.js"></script> 
+<script type="text/javascript"  src="/static/js/jquery.metadata.js"></script> 
+<script type="text/javascript"  src="/static/js/jquery.tablesorter.min.js"></script> 
+<script type="text/javascript"  src="/static/js/jquery.tablesorter.pager.js"></script>
+<script type="text/javascript"  src="/static/js/jquery-ui-1.8.18.custom.min.js"></script> 
+<script type="text/javascript"  src="/static/js/pm-frontend.js"></script> 
+
+<script>
+/*head.js("/static/js/jquery-1.7.1.min.js")
+.js("/static/js/jquery.metadata.js")
+.js("/static/js/pm-frontend.js")
+.js("/static/js/jquery.tablesorter.min.js")
+.js("/static/js/jquery-ui-1.8.18.custom.min.js")*/
+</script>
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<link rel="stylesheet" type="text/css" href="/static/css/tablesorter-style.css">
+<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui.css">
+<style type="text/css">
+/* Override Jquery Ui Tabs Style
+ * Tabs without border and right aligned
+ */
+
+#mainblock {
+	padding: 0px;
+	background: none;
+	border-width: 0px;
+}
+#mainblock .ui-tabs-nav {
+	padding-left: 0px;
+	background: transparent;
+	border-width: 0px 0px 1px 0px;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	text-align: right;
+	height: 2.35em
+}
+
+#mainblock .ui-tabs-nav li {
+	display: inline-block;
+	float: none;
+	margin: 0em;
+}
+#mainblock .ui-tabs-panel {
+	background: url(/static/css/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) repeat-x scroll 50% top #f5f3e5;
+	border-width: 0px 1px 1px 1px;
+}
+
+</style>
+{% endblock head %}
+
+
+ 
+{% block header %}
+
+	<h3 align="right" style="color: #98bf21"><i>Password Distribution Manager</i><img id="logo" src="/static/images/logo.gif"></h3>
+	<h4 id="dbname">Client Database<small><button id="changedb">cambia</button></small></h4>
+	<script type="text/javascript">
+		$(document).ready(documentready);
+	</script>
+
+
+{% endblock header %}
+
+
+{% block content %}
+	<div id="mainblock">
+		<ul>
+			<li><a href="#account_list">Account List</a></li>
+			<li><a href="#settings">Settings</a></li>
+		</ul>
+		<div id="account_list">
+				<div class="actionbar">
+
+					<div class="left" >
+						<div id="search">
+							Search:
+								<select id="searchfields" name="searchfields"> 
+									<option value="group">group</option>
+									<option value="title">title</option>
+									<option value="note">note</option>
+									<option value="tag">tag</option>
+									<option value="username">username</option>
+									<option value="url">url</option>
+									<!-- <option value="expiry_time">expiry time</option>
+									<option value="creation_time">creation time</option>
+									<option value="access_time">access time</option>
+									<option value="modify_time">modify time</option> -->
+								</select>
+								<select id="searchquery" name="searchquery">
+									<option value="icontains">contains</option>
+									<!-- <option value="gte">after</option>
+									<option value="lte">before</option> -->
+								</select>
+									<span id="searchtextspan">
+										<input id="searchtext" type="text" name="cerca">
+									</span>
+							<button id="searchresetbutton">reset</button>
+						</div>
+					</div>
+
+					<div class="right">
+						<button id="reloaddb">reload db</button>
+						<button id="addaccount">+</button>
+						<button id="importcsv">Import CSV</button>
+						<button id="exportlist">Export list</button>
+						<button id="deletelist">Delete list</button>
+					</div>
+
+				</div>
+				<hr>
+
+				<table id="accounttable" class="tablesorter">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>act</th>
+							<th>group</th>
+							<th>title</th>
+							<th>username</th>
+							<th>url</th>
+							<th>password</th>
+							<th>note</th>
+							<th>creation_time</th>
+							<th>modify_time</th>
+							<th>expiry_time</th>
+							<th>tag</th>
+						</tr>
+					</thead>
+					<tbody id="accountlist"></tbody>
+				</table>
+				<div id="pager" class="pager">
+					<form>
+						<img src="/static/images/first.png" class="first"/>
+						<img src="/static/images/prev.png" class="prev"/>
+						<input type="text" class="pagedisplay"/>
+						<img src="/static/images/next.png" class="next"/>
+						<img src="/static/images/last.png" class="last"/>
+						<select class="pagesize">
+							<option selected="selected" value="10">10</option>
+							<option value="20">20</option>
+							<option value="30">30</option>
+							<option value="40">40</option>
+						</select>
+					</form>
+				</div>
+		</div>
+				<hr>
+		<div id="settings">
+			<hr>
+			<p>nothing here for now</p>
+			<hr>
+		</div>
+	</div>
+<div id="dynamic-content">
+					<div id="changedbdialog" title="Password Backend Settings"> 
+						<span id="changedbdialog-message"></span>
+						<form>
+							<label for="dbhost">Host</label><br> 
+							<input id="changedb-host" type="text" name="dbhost" value=""><br> 
+							Available Databases<br>
+							<input id="changedb-id" type="radio" name="db" value="1" checked="checked">
+							<label id="changedb-label-db" for="db">password database</label><br>
+							<!--
+							<label for="username">Username</label><br> 
+							<input id="changedb-username" type="text" name="username" value=""><br>
+							<label for="userpassword">User password</label><br> 
+							<input id="changedb-userpass" type="password" name="userpassword" value=""><br>
+							-->
+							<label for="masterpassword">Master password</label><br> 
+							<input id="changedb-masterpass" type="password" name="masterpassword" value=""><br>
+						</form>
+					</div>
+					<div id="addaccountdialog" title="Add account">
+					<span id="addaccountdialog-message"></span>
+							<form id="addaccountdialog-form">
+								<fieldset>
+									<label for="group">Group</label><br>
+										<input type="text" name="group" id="addaccount-group"  /><br>
+									<label for="title">Title</label><br>
+										<input type="text" name="title" id="addaccount-title" value="" /><br>
+									<label for="password">Password</label><br>
+										<input type="password" name="password" id="addaccount-password" value=""/><br>
+									<label for="url">url</label><br>
+										<input type="text" name="url" id="addaccount-url" value="" /><br>
+									<label for="username">Username</label><br>
+										<input type="text" name="username" id="addaccount-username" value="" /><br>
+									<label for="note">Note</label><br>
+										<input type="text" name="note" id="addaccount-note" value="" /><br>
+									<label for="tag">Tag(space separated)</label><br>
+										<input type="text" name="tag" id="addaccount-tag" value="" /><br>
+								</fieldset>
+							</form>
+					</div>
+					<div id="importcsvdialog" title="Import CVS file">
+						<span id="importcsvdialog-message"></span>
+						<form id="csvfile-form">
+						<input id="csvfile" type="file" name="fileselect[]" multiple />
+						Select format<br>
+							<input id="csv-format-default" type="radio" name="csv-format" value="1">
+							<label id="csv-format-label-default" for="csv-format-default">Default</label><br>
+							<input id="csv-format-keepass" type="radio" name="csv-format" value="2">
+							<label id="csv-format-label-keepass" for="csv-format-keepass">Keepass2</label><br>
+							<input id="csv-format-pwsafe" type="radio" name="csv-format" value="3">
+							<label id="csv-format-label-pwsafe" for="csv-format-pwsafe">Password Gorilla</label><br>
+							<input id="csv-format-custom" type="radio" name="csv-format" value="4">
+							<label id="csv-format-label-custom" for="csv-format-custom">Password safe</label><br>
+							<input id="csv-format-custom" type="radio" name="csv-format" value="5">
+							<label id="csv-format-label-custom" for="csv-format-custom">Custom</label><br>
+						</form>
+						<span id="csv-group"></span>
+						<label for="show-csv-format">Format:</label>
+						<span id="show-csv-format">no format selected<br></span>
+						<span id="provide-header"></span>
+						<p>show preview</p>
+					</div>
+					<div id="dellistdialog" title="Delete accounts in actual list">
+						<span id="dellistdialog-message"></span>
+					</div>
+					<div id="modifyaccountdialog" title="Modify account">
+					<span id="modifyaccountdialog-message"></span>
+							<form id="modifyaccountdialog-form">
+								<fieldset>
+									<label for="group">Group</label><br>
+										<input type="text" name="group" id="modifyaccount-group"  /><br>
+									<label for="title">Title</label><br>
+										<input type="text" name="title" id="modifyaccount-title" value="" /><br>
+									<label for="password">Password</label><br>
+										<input type="text" name="password" id="modifyaccount-password" value=""/><br>
+									<label for="url">url</label><br>
+										<input type="text" name="url" id="modifyaccount-url" value="" /><br>
+									<label for="username">Username</label><br>
+										<input type="text" name="username" id="modifyaccount-username" value="" /><br>
+									<label for="note">Note</label><br>
+										<input type="text" name="note" id="modifyaccount-note" value="" /><br>
+									<label for="tag">Tag(space separated)</label><br>
+										<input type="text" name="tag" id="modifyaccount-tag" value="" /><br>
+								</fieldset>
+							</form>
+					</div>
+
+
+
+</div>
+
+{%endblock content%}

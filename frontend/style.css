@@ -1,0 +1,70 @@
+/*
+ @import url(http://fonts.googleapis.com/css?family=Fredoka+One);
+ */
+
+
+
+body {
+	background-color:#ddffdd;
+/*	font-family:"Verdana";*/
+	margin: 0 0 0 0;
+}
+
+#dbname {
+	color:#98bf21 ;
+	text-align:left
+}
+
+
+HEADER{
+/*font-family: 'Fredoka One', Verdana, Arial, Chicago, Sans-serif;*/
+padding-left:10px;
+/*font-size:1.5em;*/
+}
+
+.exporter_button {
+	text-align:right;
+}
+
+.low {
+	width:100% ;
+}
+
+.left {
+	
+	float:left;
+}
+
+.right{
+	float:right;
+}
+
+footer{
+position:fixed;
+bottom:0;
+background-color:white;
+border-top:1px solid #999;
+width:100%;
+text-align:center;
+
+}
+
+
+/*.account_list {
+	width:100%;
+	border-collapse:collapse;
+}
+
+.account_list th {
+	color:#7A991A;
+	border:solid
+}
+
+.account_list .odd{
+	background-color:#fff;
+}
+
+.account_list .even{
+	background-color:#ddd;
+}
+*/

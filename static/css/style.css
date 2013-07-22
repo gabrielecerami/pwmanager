@@ -1,0 +1,102 @@
+/*
+ @import url(http://fonts.googleapis.com/css?family=Fredoka+One);
+ */
+
+
+
+body {
+	background-color:#ddffdd;
+	font-family:"Verdana";
+	margin: 0 0 0 0;
+}
+
+#dbname {
+	color:#98bf21 ;
+	text-align:left
+}
+
+
+HEADER{
+font-family: 'Fredoka One', Verdana, Arial, Chicago, Sans-serif;
+padding-left:10px;
+font-size:1.5em;
+}
+ul.main_choices {
+list-style-type: none ;
+margin:0;
+padding:0;
+overflow:hidden;
+}
+
+li.main_choices {
+float:right ;
+}
+
+a.main_choices:link,a.main.choices:visited {
+display:block;
+width:120px;
+font-weight:bold;
+color:#FFFFFF;
+background-color:#98bf21;
+text-align:center;
+padding:4px;
+text-decoration:none;
+}
+
+a.main_choices:hover,a.main_choices:active{
+	 background-color:#7A991A;
+}
+
+.exporter_button {
+	text-align:right;
+}
+
+.low {
+	width:100% ;
+}
+
+.actionbar {
+	top:0;
+}
+
+.left {
+	top:100px;	
+	float:left ;
+}
+
+.right{
+	float:right;
+}
+
+footer{
+position:fixed ;
+bottom:0;
+background-color:white;
+border-top:1px solid #999;
+width:100%;
+text-align:center;
+
+}
+
+
+.account_list {
+	width:100%;
+	border-collapse:collapse;
+}
+
+.account_list th {
+	color:#7A991A;
+	border:solid
+}
+
+.account_list .odd{
+	background-color:#fff;
+}
+
+.account_list .even{
+	background-color:#ddd;
+}
+
+.mask {
+	text-align:center;
+}
